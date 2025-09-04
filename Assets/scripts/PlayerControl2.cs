@@ -52,13 +52,23 @@ public class PlayerControl2 : MonoBehaviour
             {
                 moveDirection = -1.0f;
                 _renderer.flipX = true;
-                _animator.SetFloat("speed", speed);
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 moveDirection = 1.0f;
                 _renderer.flipX = false;
-                _animator.SetFloat("speed", speed);
+            }
+
+            // Koşma tuşu kontrolü
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _animator.SetFloat("speed", speed * 2); // Koşma animasyonu için hız artırıldı
+                speed = 5.0f; // Koşma hızı
+            }
+            else
+            {
+                _animator.SetFloat("speed", speed); // Normal hız
+                speed = 3.0f; // Normal yürüme hızı
             }
         }
         else if (grounded == true)

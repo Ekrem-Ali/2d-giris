@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 public class nextlevel : MonoBehaviour
 {
     private Scene _scene;
+    public int Sceneindex;
     private void Awake()
     {
         _scene = SceneManager.GetActiveScene();
     }
+    //sahne geçişlerinde kullandığımız fonksiyon
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) // Corrected casing of gameObject
@@ -15,8 +17,12 @@ public class nextlevel : MonoBehaviour
             SceneManager.LoadScene(_scene.buildIndex + 1);
         }
     }
-    public void nextlvl()
+    //sahneler arası geçişlerde gamemanager olarak kullandığımız fonksiyon
+    public void LoadSceneByIndex()
     {
-        SceneManager.LoadScene(_scene.buildIndex + 1);
+        //sahnede verdiğimiz index numarasına göre sahne geçişi yapar
+        SceneManager.LoadScene(Sceneindex);
+        
+        //oyun ilk başladığında score değerlerini alır
     }
 }
